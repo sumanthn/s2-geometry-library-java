@@ -24,6 +24,7 @@ public strictfp class R1IntervalTest extends GeometryTestCase {
    * to the expected results of contains(), interiorContains(), Intersects(),
    * and InteriorIntersects() respectively.
    */
+
   public void testIntervalOps(R1Interval x, R1Interval y, String expectedRelation) {
     assertEquals(x.contains(y), expectedRelation.charAt(0) == 'T');
     assertEquals(x.interiorContains(y), expectedRelation.charAt(1) == 'T');

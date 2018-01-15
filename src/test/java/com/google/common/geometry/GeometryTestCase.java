@@ -19,7 +19,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-
 import junit.framework.TestCase;
 
 import java.util.List;
@@ -34,6 +33,7 @@ public strictfp class GeometryTestCase extends TestCase {
     rand = new Random(123456);
   }
 
+
   public void assertDoubleNear(double a, double b) {
     assertDoubleNear(a, b, 1e-9);
   }
@@ -43,8 +43,10 @@ public strictfp class GeometryTestCase extends TestCase {
     assertTrue(a < b + error);
   }
 
+  public void testBasic(){}
   // maybe these should be put in a special testing util class
   /** Return a random unit-length vector. */
+
   public S2Point randomPoint() {
     return S2Point.normalize(new S2Point(
         2 * rand.nextDouble() - 1,
@@ -56,6 +58,7 @@ public strictfp class GeometryTestCase extends TestCase {
    * Return a right-handed coordinate frame (three orthonormal vectors). Returns
    * an array of three points: x,y,z
    */
+
   public ImmutableList<S2Point> getRandomFrame() {
     S2Point p0 = randomPoint();
     S2Point p1 = S2Point.normalize(S2Point.crossProd(p0, randomPoint()));
@@ -68,6 +71,7 @@ public strictfp class GeometryTestCase extends TestCase {
    * The distribution is uniform over the space of cell ids, but only
    * approximately uniform over the surface of the sphere.
    */
+
   public S2CellId getRandomCellId(int level) {
     int face = random(S2CellId.NUM_FACES);
     long pos = rand.nextLong() & ((1L << (2 * S2CellId.MAX_LEVEL)) - 1);
@@ -104,6 +108,7 @@ public strictfp class GeometryTestCase extends TestCase {
    * is true, also checks that it does not contain any cells that do not
    * intersect the given region. ("id" is only used internally.)
    */
+
   void checkCovering(S2Region region, S2CellUnion covering, boolean checkTight, S2CellId id) {
     if (!id.isValid()) {
       for (int face = 0; face < 6; ++face) {
@@ -130,6 +135,7 @@ public strictfp class GeometryTestCase extends TestCase {
       }
     }
   }
+
 
   S2Cap getRandomCap(double minArea, double maxArea) {
     double capArea = maxArea
